@@ -138,7 +138,7 @@ export function TasksPage() {
   )
 
   return (
-    <div className="flex flex-col gap-4 p-4 lg:p-6">
+    <div className="flex flex-col gap-4 rounded-[2rem] bg-card p-5 shadow-xs lg:p-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-xl font-semibold">Quản lý công việc</h2>

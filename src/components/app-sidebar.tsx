@@ -15,36 +15,18 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { GalleryVerticalEndIcon, AudioLinesIcon, TerminalIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
+import { GalleryVerticalEndIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
 
 // This is sample data.
 const data = {
-  teams: [
-    {
-      name: "Công Ty ABC",
-      logo: (
-        <GalleryVerticalEndIcon
-        />
-      ),
-      plan: "Doanh nghiệp",
-    },
-    {
-      name: "Công Ty ABC (chi nhánh)",
-      logo: (
-        <AudioLinesIcon
-        />
-      ),
-      plan: "Khởi nghiệp",
-    },
-    {
-      name: "Tập đoàn Evil",
-      logo: (
-        <TerminalIcon
-        />
-      ),
-      plan: "Miễn phí",
-    },
-  ],
+  team: {
+    name: "Công Ty ABC",
+    logo: (
+      <GalleryVerticalEndIcon
+      />
+    ),
+    plan: "Doanh nghiệp",
+  },
   navMain: [
     {
       title: "Sân thử nghiệm",
@@ -182,7 +164,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <TeamSwitcher team={data.team} />
       </SidebarHeader>
       <SidebarContent>
         <NavLinks />

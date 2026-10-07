@@ -1,22 +1,22 @@
 import { AppShell } from "@/components/app-shell"
-import { ChartAreaInteractive } from "@/components/chart-area-interactive"
-import { DataTable } from "@/components/data-table"
-import { SectionCards } from "@/components/section-cards"
-
-import data from "./data.json"
+import { BalancePanels } from "@/components/dashboard/balance-panels"
+import { DashboardHeader } from "@/components/dashboard/dashboard-header"
+import { EngagementChart } from "@/components/dashboard/engagement-chart"
+import { PaymentGoal } from "@/components/dashboard/payment-goal"
+import { PaymentHistory } from "@/components/dashboard/payment-history"
 
 export default function Page() {
   return (
-    <AppShell title="Bảng điều khiển">
-      <div className="flex flex-1 flex-col">
-        <div className="@container/main flex flex-1 flex-col gap-2">
-          <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-            <SectionCards />
-            <div className="px-4 lg:px-6">
-              <ChartAreaInteractive />
-            </div>
-            <DataTable data={data} />
-          </div>
+    <AppShell>
+      <div className="flex flex-col gap-4">
+        <DashboardHeader />
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,1fr)]">
+          <PaymentGoal />
+          <EngagementChart />
+          <BalancePanels />
+        </div>
+        <div className="lg:w-2/3 lg:pr-2">
+          <PaymentHistory />
         </div>
       </div>
     </AppShell>

@@ -3,7 +3,7 @@ import { TasksPage } from "@/features/tasks"
 
 export default function Page() {
   return (
-    <AppShell title="Công việc">
+    <AppShell>
       <TasksPage />
     </AppShell>
   )

@@ -1,29 +1,19 @@
 import { AppSidebar } from "@/components/app-sidebar"
 import { AuthGuard } from "@/components/auth-guard"
-import { SiteHeader } from "@/components/site-header"
+import { TopNav } from "@/components/top-nav"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
-/** Khung chung cho các trang cần đăng nhập: sidebar + header + nội dung. */
-export function AppShell({
-  title,
-  children,
-}: {
-  title: string
-  children: React.ReactNode
-}) {
+/** Khung chung cho các trang cần đăng nhập: sidebar, thanh trên cùng và nội dung. */
+export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <AuthGuard>
-      <SidebarProvider
-        style={
-          {
-            "--header-height": "calc(var(--spacing) * 12)",
-          } as React.CSSProperties
-        }
-      >
+      <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
-          <SiteHeader title={title} />
-          {children}
+          <div className="flex flex-1 flex-col gap-4 p-3 md:p-5">
+            <TopNav />
+            <main className="min-w-0 flex-1">{children}</main>
+          </div>
         </SidebarInset>
       </SidebarProvider>
     </AuthGuard>

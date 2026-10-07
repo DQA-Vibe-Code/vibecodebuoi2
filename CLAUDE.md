@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `npm run dev` — dev server at http://localhost:3000
 - `npm run build` — production build (also type-checks); `npx tsc --noEmit` for a faster type check
-- `npm run lint` — ESLint. Two pre-existing `react-hooks/set-state-in-effect` errors come from shadcn template code (`chart-area-interactive.tsx`, `hooks/use-mobile.ts`)
+- `npm run lint` — ESLint (currently clean)
 - No test runner is configured.
 - Add UI components with `npx shadcn@latest add <name>` (style `base-nova`, built on `@base-ui/react`, not Radix — APIs differ, e.g. `render={...}` props instead of `asChild`).
 
@@ -18,8 +18,8 @@ Next.js App Router + TypeScript + Tailwind + shadcn/ui + lucide-react, source un
 
 - `/` redirects to `/dashboard` ([src/app/page.tsx](src/app/page.tsx)).
 - `/login` — [login-form.tsx](src/components/login-form.tsx) (shadcn login-04 layout) signs in with Firebase email/password and Google popup, plus register mode and password reset. Firebase error codes are mapped to Vietnamese in `translateError`.
-- `/dashboard` — shadcn dashboard-01 content (section cards, area chart, drag-and-drop data table fed by `src/app/dashboard/data.json`) inside the sidebar-07 shell ([app-sidebar.tsx](src/components/app-sidebar.tsx): team switcher, nav, projects, user menu). Sidebar menu data is sample data defined inline in `app-sidebar.tsx`.
-- `/tasks` — feature module in `src/features/tasks/` (`components/`, `services/`, `types.ts`, `constants.ts`). `services/tasks-service.ts` does Firestore CRUD on the `tasks` collection (`getTasks`, `getTask`, `createTask`, `updateTask`, `deleteTask`). Pages are thin: `src/app/tasks/page.tsx` wraps `<TasksPage />` in `AppShell` ([app-shell.tsx](src/components/app-shell.tsx): AuthGuard + sidebar + header, shared with `/dashboard`). Sidebar links live in `nav-links.tsx`.
+- `/dashboard` — greeting, payment cards, engagement bar chart, balance area chart and payment history in a fintech-style layout (`src/components/dashboard/*`, all sample data). Pages share `AppShell` = sidebar-07 `AppSidebar` (team header, `nav-links`, `nav-main`, `nav-projects`, `nav-user`) + `TopNav` (pill nav, user menu); pill-nav entries are in `nav-items.ts`. `site-header`, `section-cards`, `chart-area-interactive`, `data-table` (dashboard-01) are no longer used.
+- `/tasks` — feature module in `src/features/tasks/` (`components/`, `services/`, `types.ts`, `constants.ts`). `services/tasks-service.ts` does Firestore CRUD on the `tasks` collection (`getTasks`, `getTask`, `createTask`, `updateTask`, `deleteTask`). Pages are thin: `src/app/tasks/page.tsx` wraps `<TasksPage />` in `AppShell` ([app-shell.tsx](src/components/app-shell.tsx): AuthGuard + sidebar + top nav, shared with `/dashboard`). 
 - `nav-documents.tsx` and `nav-secondary.tsx` are leftovers from dashboard-01 and are unused.
 
 ### Auth flow
