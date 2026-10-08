@@ -4,6 +4,7 @@ import * as React from "react"
 import { onAuthStateChanged, type User } from "firebase/auth"
 
 import { auth } from "@/lib/firebase"
+import { upsertUserProfile } from "@/lib/users-service"
 
 type AuthContextValue = {
   user: User | null
@@ -23,6 +24,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return onAuthStateChanged(auth, (u) => {
       setUser(u)
       setLoading(false)
+      // Lưu hồ sơ users/{uid} để dữ liệu khác có thể tham chiếu (vd. customers.assignedTo).
+      if (u) upsertUserProfile(u).catch(console.error)
     })
   }, [])
 

@@ -1,0 +1,13 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Tệp đính kèm của khách hàng: customers/{customerId}/files/{fileId}
+    match /customers/{customerId}/files/{fileId} {
+      allow read, delete: if request.auth != null;
+      // Tối đa 10 MB, khớp với MAX_FILE_SIZE trong files-service.ts.
+      allow create, update: if request.auth != null
+        && request.resource.size <= 10 * 1024 * 1024;
+    }
+  }
+}
